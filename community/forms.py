@@ -6,7 +6,7 @@ from community.models import Question
 class AskQuestionForm(forms.ModelForm):
     title = forms.CharField(widget=forms.TextInput(attrs={'class': 'input'}))
     text = forms.CharField(
-        widget=forms.TextInput(attrs={'class': 'textarea', 'size': '40'})
+        widget=forms.TextInput(attrs={'class': 'textarea', 'size': '20'})
     )
 
     class Meta:

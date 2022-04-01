@@ -5,12 +5,7 @@ from .forms import AskQuestionForm
 
 def home(request):
     questions = Question.objects.all()
-    return render(request, 'questions_page.html', {'questions': questions})
-
-
-def questions(request):
-    questions = Question.objects.all()
-    return render(request, 'questions.html', {'questions': questions})
+    return render(request, 'home.html', {'questions': questions})
 
 
 def ask_question(request):
