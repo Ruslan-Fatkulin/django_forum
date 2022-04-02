@@ -12,7 +12,7 @@ def ask_question(request):
     form = forms.AskQuestionForm(request.POST)
     if request.method == 'POST' and form.is_valid():
         instance = form.save(commit=False)
-        instance.user = request.user
+        instance.author = request.user
         instance.save()
         return redirect('community:home')
     form = forms.AskQuestionForm()
@@ -21,20 +21,27 @@ def ask_question(request):
 
 def answer(request, pk):
     question = Question.objects.get(pk=pk)
-    answerr = Answer.objects.all()
+    answer = Answer.objects.filter(user=request.user)
+
     if request.method == "POST":
-        form = forms.AnswerForm(data=request.POST)
+        form = forms.AnswerForm(request.POST)
         if form.is_valid():
-            new_answer = form.save(commit=False)
-            new_answer.user = request.user
-            new_answer.question = question
-            new_answer.save()
+            rating = form.save(commit=False)
+            rating.user = request.user
+            rating.question = question
+            rating.save()
             return redirect('community:question_detail', pk=pk)
     form = forms.AnswerForm()
-    return render(request, 'answers.html', {'form': form, 'question': question, 'answerr': answerr})
+    return render(request, 'answers.html', {'form': form, 'question': question, 'answer': answer})
+
 
 
 def question_detail(request, pk):
     question = Question.objects.get(pk=pk)
     answers = Answer.objects.filter(question=pk)
     return render(request, 'question_detail.html', {'question': question, 'answers': answers})
+
+
+def delete_question(request, pk):
+    question = Question.objects.get(pk=pk).delete()
+    return redirect('community:home')

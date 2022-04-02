@@ -2,7 +2,7 @@
 
 {% block content %}
     <div class="section">
-        <div class="columns">
+        <div class="columns is-multiline">
             {% for question in questions %}
                 <div class="column is-4">
                     <a href="{% url 'community:question_detail' question.pk %}">
@@ -13,9 +13,16 @@
                         <div class="subtitle">
                             {{ question.date }}
                         </div>
+                            <div class="subtitle">{{ question.author }}</div>
                     </div>
+                        {% if user == question.author %}
+                            <a href="{% url 'community:delete_question' pk=question.pk %}">
+                            delete
+                        </a>
+                        {% endif %}
                     </a>
                 </div>
+
                 <div class="subtitle">
                     <a class="button" href="{% url 'community:answer' question.pk %}">Ответить</a>
                 </div>
