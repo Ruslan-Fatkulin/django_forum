@@ -1,0 +1,113 @@
+{% extends 'base_layout.html' %}
+
+
+{% block content %}
+    <div class="title is-2 has-text-black has-text-centered">Здравствуй, {{ user.first_name }}</div>
+    <section class="section">
+        <div class="columns">
+            <div class="column is-3">
+                <div class="columns is-gapless">
+                    <div class="column is-2">
+                        <a href="{% url 'users:my_profile' %}">
+                            <ion-icon class="icon my-1" name="person-outline"></ion-icon>
+                    </div>
+                    <div class="column is-9">
+                        <div class="subtitle is-6">{{ user.first_name }} {{ user.last_name }}
+                            {% if user.is_superuser %}
+                            <ion-icon name="star-outline"></ion-icon>
+                            {% endif %}
+                            <br> {{ user.email }}
+                        </div>
+                        </a>
+                    </div>
+                </div>
+                <hr>
+                <div class="columns my-4">
+                   <div class="column is-2">
+                        <a href="{% url 'shop:cart' %}">
+                        <ion-icon class="icon " name="cart-outline"></ion-icon>
+                   </div>
+                    <div class="column ">
+                        <div class="subtitle is-6">Корзина</div>
+                    </div>
+                    <div class="column">
+                        <div class="subtitle is-6">{{ item.quantity }}</div>
+                    </div>
+                    </a>
+                </div>
+                <div class="columns my-4">
+                    <div class="column is-2">
+                        <a href="{% url 'users:sign_out' %}">
+                            <ion-icon class="icon" name="log-out-outline"></ion-icon>
+                    </div>
+                    <div class="column">
+                        <div class="subtitle is-6">
+                            Выход
+                        </div>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <div class="column is-9">
+                <div class="box" style="border-radius: 15px;">
+                    <div class="columns">
+                        <div class="column is-9"><div class="title is-4">О пользователе</div></div>
+                        <div class="column">
+                            <a class="button is-success" href="{% url 'users:edit_profile' %}">
+                                <ion-icon class="icon mr-2" name="create-outline"></ion-icon>
+                                Изменить профиль
+                            </a>
+                        </div>
+                    </div>
+                    <hr>
+                    <div class="columns">
+                        <div class="column">
+                            <div class="subtitle is-5">Имя</div>
+                        </div>
+                        <div class="column">
+                            <div class="subtitle is-6">
+                                {{ user.first_name }}
+                            </div>
+                        </div>
+                    </div>
+                    <div class="columns">
+                        <div class="column">
+                            <div class="subtitle is-5">
+                                Фамилия
+                            </div>
+                        </div>
+                        <div class="column">
+                            <div class="subtitle is-6">
+                                {{ user.last_name }}
+                            </div>
+                        </div>
+                    </div>
+                    <div class="columns">
+                        <div class="column">
+                            <div class="subtitle is-5">
+                                Email адресс
+                            </div>
+                        </div>
+                        <div class="column">
+                            <div class="subtitle is-6">
+                                {{ user.email }}
+                            </div>
+                        </div>
+                    </div>
+                    <div class="columns">
+                        <div class="column">
+                            <div class="subtitle is-5">
+                                Пароль
+                            </div>
+                        </div>
+                        <div class="column">
+                            <div class="subtitle is-6"">
+                            <a href="{% url 'users:reset_password' %}">Забыли пароль?</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+{% endblock %}

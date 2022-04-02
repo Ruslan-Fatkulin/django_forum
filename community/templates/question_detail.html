@@ -1,0 +1,13 @@
+{% extends 'base_layout.html'%}
+
+{% block content %}
+<div class="title">{{ question.title }}</div>
+<div class="title">{{ question.description }}</div>
+    {% if answers %}
+        {% for answer in answers %}
+            <div class="subtitle">{{ answer.date }}</div>
+            <div class="title">{{ answer.text }}</div>
+            <div class="subtitle">{{ answer.user }}</div>
+        {% endfor %}
+    {% endif %}
+{% endblock %}

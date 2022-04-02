@@ -1,0 +1,42 @@
+{% extends 'base_layout.html' %}
+{% load static %}
+
+{% block auth %}
+    <body class="section bs">
+    <div class="columns is-centered">
+        <div class="column is-5">
+            <div class="box back " style="border-radius:35px">
+                <div class="title is-2 has-text-centered">Регистрация</div>
+                <hr>
+                <form class="form" method="post" >
+                    {% csrf_token %}
+                    {% for field in form %}
+                        <div class="field">
+                            <label class="label" for="{{ field.id_for_label }}">
+                                {{ field.label }}
+                            </label>
+                            <div class="control" >
+                                {{ field }}
+                            </div>
+                        </div>
+                    {% endfor %}
+                    <button type="submit" class="button is-info is-fullwidth">
+                        Продолжить
+                    </button>
+                     <div class="columns">
+                         <div class="column     ">
+                             <label class="checkbox">
+                              <input type="checkbox">
+                              Я согласен с <a href="https://tilda.cc/ru/privacy-generator/">политикой сайта</a>
+                            </label>
+                         </div>
+                         <div class="column">
+                             <a class="subtitle is-6" href="{% url 'users:sign_in' %}">Уже есть аккаунт ? <b>Войдите</b></a>
+                         </div>
+                     </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</body>
+{% endblock %}

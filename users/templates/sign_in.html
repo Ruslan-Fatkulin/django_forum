@@ -1,0 +1,43 @@
+{% extends 'base_layout.html' %}
+
+{% block auth %}
+    <body class="section bs">
+    <div class="columns is-centered">
+        <div class="column is-5">
+            <div class="box back" style="border-radius:15px; min-height:500px;">
+                <div class="title is-2 has-text-centered">Вход</div>
+                <hr>
+                <form class="form " method="post">
+                    {% csrf_token %}
+                    {% for field in form %}
+                        <div class="field ">
+                            <label class="label" for="{{ field.id_for_label }}">
+                                {{ field.label }}
+                            </label>
+                            <div class="control"    >
+                                {{ field }}
+                            </div>
+                        </div>
+                    {% endfor %}
+                    <button type="submit" class="button is-info is-fullwidth">
+                        Войти
+                    </button>
+                    <div class="columns my-2">
+                        <div class="column ">
+                            <label class="checkbox">
+                                <input type="checkbox">
+                                Запомнить меня
+                            </label>
+                        </div>
+                        <div class="column ">
+                            <a href="{% url 'users:sign_up' %}">
+                                Зарегестрироваться
+                            </a>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    </body>
+{% endblock %}

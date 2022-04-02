@@ -1,0 +1,20 @@
+{% extends 'base_layout.html' %}
+{% load static %}
+
+{% block content %}
+<p class="title is-size-5 has-text-grey-light">{{ question.description }}</p>
+<form action="{% url 'community:answer' question.pk %}" method="post">
+    {% csrf_token %}
+    {% for field in form %}
+    <div class="field">
+        <label for="{{ field.id_for_label }}" class="label">
+            {{ field.label }}
+        </label>
+        {{ field }}
+    </div>
+    {% endfor %}
+    <button class="button mt-6 is-success" type="submit">
+        Submit
+    </button>
+</form>
+{% endblock %}

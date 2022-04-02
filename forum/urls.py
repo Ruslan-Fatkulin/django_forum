@@ -7,7 +7,7 @@ from django.conf import settings
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('community/', include(('community.urls', 'forum'), namespace='community')),
-    # path('users/', include(('users.urls', 'forum'), namespace='users')),
+    path('users/', include(('users.urls', 'forum'), namespace='users')),
 ]
 urlpatterns += static(
     settings.MEDIA_URL,

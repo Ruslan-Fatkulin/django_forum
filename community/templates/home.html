@@ -5,7 +5,8 @@
         <div class="columns">
             {% for question in questions %}
                 <div class="column is-4">
-                    <div class="box">
+                    <a href="{% url 'community:question_detail' question.pk %}">
+                        <div class="box">
                         <div class="title">
                             {{ question }}
                         </div>
@@ -13,6 +14,10 @@
                             {{ question.date }}
                         </div>
                     </div>
+                    </a>
+                </div>
+                <div class="subtitle">
+                    <a class="button" href="{% url 'community:answer' question.pk %}">Ответить</a>
                 </div>
             {% endfor %}
         </div>
