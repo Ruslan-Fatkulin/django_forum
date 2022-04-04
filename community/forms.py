@@ -1,6 +1,6 @@
 from django import forms
 
-from community.models import Question, Answer
+from community.models import Question, Answer, Feedback
 
 
 class AskQuestionForm(forms.ModelForm):
@@ -20,4 +20,13 @@ class AnswerForm(forms.ModelForm):
 
     class Meta:
         model = Answer
+        fields = ['text']
+
+
+class FeedbackForm(forms.ModelForm):
+    text = forms.CharField(widget=forms.Textarea(attrs={'class': 'textarea'}),
+                           label='Опишите свою проблему')
+
+    class Meta:
+        model = Feedback
         fields = ['text']

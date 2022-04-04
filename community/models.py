@@ -18,3 +18,13 @@ class Answer(models.Model):
     date = models.DateTimeField(auto_now_add=True)
     text = models.TextField(blank=True, max_length=3000)
 
+    def __str__(self):
+        return f'{self.user} -> {self.question.author}'
+
+
+class Feedback(models.Model):
+    text = models.CharField(max_length=255)
+    user = models.ForeignKey(User, on_delete=models.CASCADE, default=None)
+
+    def __str__(self):
+        return f'{self.user} - {self.text[:20]}'

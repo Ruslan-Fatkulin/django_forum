@@ -35,7 +35,6 @@ def answer(request, pk):
     return render(request, 'answers.html', {'form': form, 'question': question, 'answer': answer})
 
 
-
 def question_detail(request, pk):
     question = Question.objects.get(pk=pk)
     answers = Answer.objects.filter(question=pk)
@@ -45,3 +44,14 @@ def question_detail(request, pk):
 def delete_question(request, pk):
     question = Question.objects.get(pk=pk).delete()
     return redirect('community:home')
+
+
+def feedback(request):
+    form = forms.FeedbackForm(request.POST)
+    if request.method == 'POST' and form.is_valid():
+        instance = form.save(commit=False)
+        instance.user = request.user
+        instance.save()
+        return redirect('community:home')
+    form = forms.FeedbackForm()
+    return render(request, 'feedback.html', {'form': form})
