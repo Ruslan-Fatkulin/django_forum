@@ -24,7 +24,7 @@
                 <hr>
                 <div class="columns my-4">
                    <div class="column is-2">
-                        <a href="{% url 'shop:cart' %}">
+{#                        <a href="{% url 'shop:cart' %}">#}
                         <ion-icon class="icon " name="cart-outline"></ion-icon>
                    </div>
                     <div class="column ">
@@ -53,7 +53,7 @@
                     <div class="columns">
                         <div class="column is-9"><div class="title is-4">О пользователе</div></div>
                         <div class="column">
-                            <a class="button is-success" href="{% url 'users:edit_profile' %}">
+{#                            <a class="button is-success" href="{% url 'users:edit_profile' %}">#}
                                 <ion-icon class="icon mr-2" name="create-outline"></ion-icon>
                                 Изменить профиль
                             </a>
@@ -78,7 +78,7 @@
                         </div>
                         <div class="column">
                             <div class="subtitle is-6">
-                                {{ user.last_name }}
+                                {{ user.nickname }}
                             </div>
                         </div>
                     </div>
@@ -102,7 +102,7 @@
                         </div>
                         <div class="column">
                             <div class="subtitle is-6"">
-                            <a href="{% url 'users:reset_password' %}">Забыли пароль?</a>
+{#                            <a href="{% url 'users:reset_password' %}">Забыли пароль?</a>#}
                             </div>
                         </div>
                     </div>

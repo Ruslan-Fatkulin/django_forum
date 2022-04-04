@@ -49,6 +49,6 @@ def sign_out(request):
 #     return render(request, 'reset_password.html', {'form': form})
 
 
-# def my_profile(request):
-#     user = request.GET.get('user')
-#     return render(request, 'my_profile.html')
+def my_profile(request):
+    user = request.GET.get('user')
+    return render(request, 'my_profile.html', {'user': user})

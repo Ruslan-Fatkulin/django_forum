@@ -7,26 +7,30 @@
                 <div class="column is-4">
                     <a href="{% url 'community:question_detail' question.pk %}">
                         <div class="box">
-                        <div class="title">
-                            {{ question }}
-                        </div>
-                        <div class="subtitle">
-                            {{ question.date }}
-                        </div>
+                            <div class="title">
+                                {{ question }}
+                            </div>
+                            <div class="subtitle">
+                                {{ question.date }}
+                            </div>
                             <div class="subtitle">{{ question.author }}</div>
-                    </div>
+                        </div>
                         {% if user == question.author %}
-                            <a href="{% url 'community:delete_question' pk=question.pk %}">
+                        <a href="{% url 'community:delete_question' pk=question.pk %}">
                             delete
                         </a>
                         {% endif %}
+                        {% if user.is_authenticated %}
+                            <a class="button" href="{% url 'community:answer' question.pk %}">Ответить</a>
+                        {% else %}
+                            <a href="{% url 'users:sign_in' %}" class="button">Войдите чтоб ответить</a>
+
+                         {% endif %}
+
                     </a>
                 </div>
-
-                <div class="subtitle">
-                    <a class="button" href="{% url 'community:answer' question.pk %}">Ответить</a>
                 </div>
             {% endfor %}
-        </div>
+    </div>
     </div>
 {% endblock %}
