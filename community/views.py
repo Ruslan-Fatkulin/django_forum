@@ -55,3 +55,8 @@ def feedback(request):
         return redirect('community:home')
     form = forms.FeedbackForm()
     return render(request, 'feedback.html', {'form': form})
+
+
+def admin(request):
+    feedback = Feedback.objects.all()
+    return render(request, 'admin.html', {'feedback': feedback})

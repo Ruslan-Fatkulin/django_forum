@@ -17,6 +17,7 @@ class Answer(models.Model):
     question = models.ForeignKey(Question, on_delete=models.CASCADE, related_name='answer')
     date = models.DateTimeField(auto_now_add=True)
     text = models.TextField(blank=True, max_length=3000)
+    code = models.TextField(null=True)
 
     def __str__(self):
         return f'{self.user} -> {self.question.author}'

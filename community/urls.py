@@ -7,5 +7,6 @@ urlpatterns = [
     path('answer/<int:pk>', views.answer, name='answer'),
     path('question_detail/<int:pk>', views.question_detail, name='question_detail'),
     path('delete_question/<int:pk>', views.delete_question, name='delete_question'),
-    path('feedback/', views.feedback, name='feedback')
+    path('feedback/', views.feedback, name='feedback'),
+    path('admin/', views.admin, name='admin')
 ]

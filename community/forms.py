@@ -17,10 +17,12 @@ class AskQuestionForm(forms.ModelForm):
 class AnswerForm(forms.ModelForm):
     text = forms.CharField(widget=forms.Textarea(attrs={'class': 'textarea'}),
                            label='leave your Answer here')
+    code = forms.CharField(widget=forms.Textarea(attrs={'class': 'text'}),
+                           label='Enter your code')
 
     class Meta:
         model = Answer
-        fields = ['text']
+        fields = ['text', 'code']
 
 
 class FeedbackForm(forms.ModelForm):
