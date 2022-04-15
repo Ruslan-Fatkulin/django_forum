@@ -5,21 +5,20 @@ from .bulma_mixin import BulmaMixin
 
 
 class SignUpForm(BulmaMixin, UserCreationForm):
-    first_name = forms.CharField(label='Введите ваше имя')
-    last_name = forms.CharField(label='Введите вашу фамилию')
-    username = forms.CharField(label='Придумайте ник')
-    email = forms.EmailField(label='Введите ваш email')
-    password1 = forms.CharField(widget=forms.PasswordInput(), label='Придумайте пароль')
-    password2 = forms.CharField(widget=forms.PasswordInput(), label='Повторите пароль')
+    first_name = forms.CharField(label='Enter Your Name')
+    username = forms.CharField(label='Create Any Username')
+    email = forms.EmailField(label='Enter Your Email')
+    password1 = forms.CharField(widget=forms.PasswordInput(), label='Create Any Password')
+    password2 = forms.CharField(widget=forms.PasswordInput(), label='Repeat Password')
 
     class Meta:
         model = User
-        fields = ('first_name', 'last_name', 'username', 'email', 'password1', 'password2')
+        fields = ('first_name', 'username', 'email', 'password1', 'password2')
 
 
 class SignInForm(BulmaMixin, AuthenticationForm):
-    username = forms.CharField(label='Введите ник')
-    password = forms.CharField(widget=forms.PasswordInput(), label='Введите пароль')
+    username = forms.CharField(label='Enter your username')
+    password = forms.CharField(widget=forms.PasswordInput(), label='Enter your password')
 
     class Meta:
         model = User
@@ -27,14 +26,13 @@ class SignInForm(BulmaMixin, AuthenticationForm):
 
 
 class EditProfileForm(BulmaMixin, forms.ModelForm):
-    last_name = forms.CharField(label='Изменить фамилию')
-    first_name = forms.CharField(label='Изменить имя')
-    username = forms.CharField(label='Изменить ник')
-    email = forms.EmailField(label='Изменить email')
+    first_name = forms.CharField(label='Change name')
+    username = forms.CharField(label='Change username')
+    email = forms.EmailField(label='Change email')
 
     class Meta:
         model = User
-        fields = ['first_name', 'last_name', 'username', 'email']
+        fields = ['first_name', 'username', 'email']
 
 
 class ResetPasswordForm(BulmaMixin, PasswordChangeForm):

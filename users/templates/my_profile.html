@@ -2,7 +2,7 @@
 
 
 {% block content %}
-    <div class="title is-2 has-text-black has-text-centered">Здравствуй, {{ user.first_name }}</div>
+    <div class="title is-2 has-text-black has-text-centered">Good day, {{ user.first_name }}</div>
     <section class="section">
         <div class="columns">
             <div class="column is-3">
@@ -11,10 +11,11 @@
                         <a href="{% url 'users:my_profile' %}">
                             <ion-icon class="icon my-1" name="person-outline"></ion-icon>
                     </div>
+
                     <div class="column is-9">
                         <div class="subtitle is-6">{{ user.first_name }} {{ user.last_name }}
                             {% if user.is_superuser %}
-                            <ion-icon name="star-outline"></ion-icon>
+                                <ion-icon name="star-outline"></ion-icon>
                             {% endif %}
                             <br> {{ user.email }}
                         </div>
@@ -22,16 +23,14 @@
                     </div>
                 </div>
                 <hr>
+                <img src="{{ user.avatar.url }}" alt="">
                 <div class="columns my-4">
-                   <div class="column is-2">
-{#                        <a href="{% url 'shop:cart' %}">#}
-                        <ion-icon class="icon " name="cart-outline"></ion-icon>
-                   </div>
-                    <div class="column ">
-                        <div class="subtitle is-6">Корзина</div>
+                    <div class="column is-2">
+                        <a href="{% url 'community:home' %}">
+                            <ion-icon name="home-outline" class="icon"></ion-icon>
                     </div>
-                    <div class="column">
-                        <div class="subtitle is-6">{{ item.quantity }}</div>
+                    <div class="column ">
+                        <div class="subtitle is-6">Home page</div>
                     </div>
                     </a>
                 </div>
@@ -42,7 +41,7 @@
                     </div>
                     <div class="column">
                         <div class="subtitle is-6">
-                            Выход
+                            Sign out
                         </div>
                         </a>
                     </div>
@@ -51,18 +50,20 @@
             <div class="column is-9">
                 <div class="box" style="border-radius: 15px;">
                     <div class="columns">
-                        <div class="column is-9"><div class="title is-4">О пользователе</div></div>
+                        <div class="column is-9">
+                            <div class="title is-4">About user</div>
+                        </div>
                         <div class="column">
-{#                            <a class="button is-success" href="{% url 'users:edit_profile' %}">#}
+                            <a class="button is-success" href="{% url 'users:edit_profile' %}">
                                 <ion-icon class="icon mr-2" name="create-outline"></ion-icon>
-                                Изменить профиль
+                                Change profile
                             </a>
                         </div>
                     </div>
                     <hr>
                     <div class="columns">
                         <div class="column">
-                            <div class="subtitle is-5">Имя</div>
+                            <div class="subtitle is-5">Name</div>
                         </div>
                         <div class="column">
                             <div class="subtitle is-6">
@@ -73,19 +74,19 @@
                     <div class="columns">
                         <div class="column">
                             <div class="subtitle is-5">
-                                Фамилия
+                                Last name
                             </div>
                         </div>
                         <div class="column">
                             <div class="subtitle is-6">
-                                {{ user.nickname }}
+                                {{ user.last_name }}
                             </div>
                         </div>
                     </div>
                     <div class="columns">
                         <div class="column">
                             <div class="subtitle is-5">
-                                Email адресс
+                                Email
                             </div>
                         </div>
                         <div class="column">
@@ -97,12 +98,13 @@
                     <div class="columns">
                         <div class="column">
                             <div class="subtitle is-5">
-                                Пароль
+                                Password
                             </div>
                         </div>
                         <div class="column">
-                            <div class="subtitle is-6"">
-{#                            <a href="{% url 'users:reset_password' %}">Забыли пароль?</a>#}
+                            <div class="subtitle is-6">
+                                <a href="{% url 'users:reset_password' %}">
+                                    Forgot your password?</a>
                             </div>
                         </div>
                     </div>

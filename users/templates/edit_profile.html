@@ -2,24 +2,57 @@
 
 
 {% block auth %}
-    <div class="columns is-centered">
-         <div class="column is-4">
-            <div class="box has-background-info-light">
+    <body class=" profile">
+    <div class="columns">
+        <div class="column is-6">
+            <div class="box">
+                <div class="columns">
+                    <div class="column">
+                        Your name:
+                    </div>
+                    <div class="column">
+                        {{ user.first_name }}
+                    </div>
+                </div>
+                <div class="columns">
+                    <div class="column">
+                        Your username:
+                    </div>
+                    <div class="column">
+                        {{ user.username }}
+                    </div>
+                </div>
+                <div class="columns">
+                    <div class="column">
+                        Your email:
+                    </div>
+                    <div class="column">
+                        {{ user.email }}
+                    </div>
+                </div>
+
+            </div>
+            <a href="{% url 'users:my_profile' %}" class="button is-outlined is-fullwidth is-centered">
+                    Go to my Profile
+                </a>
+        </div>
+        <div class="column is-4">
+            <div class="box">
                 <form class="form" method="post" enctype="multipart/form-data">
                     <h1 class="title has-text-centered is-2">
                         Edit Profile
                     </h1>
-                        {% csrf_token %}
-                        {% for field in form %}
-                            <div class="field">
-                                <label for="{{ field.id_for_label }}" class="label">
-                                    {{ field.label }}
-                                </label>
-                                <div class="control">
-                                    {{ field }}
-                                </div>
+                    {% csrf_token %}
+                    {% for field in form %}
+                        <div class="field">
+                            <label for="{{ field.id_for_label }}" class="label">
+                                {{ field.label }}
+                            </label>
+                            <div class="control">
+                                {{ field }}
                             </div>
-                        {% endfor %}
+                        </div>
+                    {% endfor %}
                     <button class="button is-primary is-fullwidth" type="submit">
                         Submit
                     </button>
@@ -27,6 +60,7 @@
             </div>
         </div>
     </div>
+    </body>
 {% endblock %}
 
 

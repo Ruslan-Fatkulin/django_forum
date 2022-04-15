@@ -8,9 +8,11 @@
     <title>Title</title>
     <link rel="stylesheet" href="{% static 'static/bulma.css' %}">
     <link rel="stylesheet" href="{% static 'static/style.css' %}">
+    <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+<script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
 </head>
 <body>
-<nav class="navbar" role="navigation" aria-label="main navigation">
+    <nav class="navbar nav" role="navigation" aria-label="main navigation">
     <div class="navbar-brand">
         <a class="navbar-item" href='{% url "community:home" %}'>
             <img src="https://bulma.io/images/bulma-logo.png" width="112" height="28">
@@ -42,9 +44,11 @@
                     <a class="navbar-item">
                         About
                     </a>
-                    <a class="navbar-item">
-                        Jobs
+                    {% if user.is_superuser %}
+                        <a href="{% url 'community:admin' %}" class="navbar-item">
+                        Страница администратора
                     </a>
+                    {% endif %}
                     <a href="{% url 'community:feedback' %}" class="navbar-item">
                         Обратная связь
                     </a>
@@ -52,6 +56,11 @@
                     <a href="{% url 'community:ask_question' %}" class="navbar-item">
                         Задать вопрос
                     </a>
+                    {% if user.is_superuser %}
+                        <a href="{% url 'community:admin' %}" class="navbar-item">
+                        Админка
+                    </a>
+                    {% endif %}
                 </div>
             </div>
         </div>
@@ -59,21 +68,41 @@
         <div class="navbar-end">
             <div class="navbar-item">
                 <div class="buttons">
-                    <a href="{% url 'users:sign_up' %}" class="button is-primary">
-                        Sign up
+                    <a href="{% url 'users:sign_out' %}" class="button is-primary">
+                        Log out
                     </a>
                     <a href="{% url 'users:sign_in' %}" class="button is-light">
                         Log in
                     </a>
-                    <a href="">
-                        {{ user.username }}
+                    <a href="{% url 'users:my_profile'  %}">
+                        {{ user.first_name }}
                     </a>
+                    <a href="">
+                        {{ user.first_name }}
+                    </a>
+
                 </div>
             </div>
         </div>
     </div>
 </nav>
-<div class="hero-body my-6">
+<div class="section">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r121/three.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/vanta@latest/dist/vanta.globe.min.js"></script>
+<script>
+  VANTA.GLOBE({
+  el: "#htmlid",
+  mouseControls: true,
+  touchControls: true,
+  gyroControls: true,
+  minHeight: 200.00,
+  minWidth: 200.00,
+  scale: 1.00,
+  scaleMobile: 1.00
+  })
+</script>
+</div>
+<div class="hero-body">
     {% block auth %}
     {% endblock %}
 

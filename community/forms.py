@@ -1,17 +1,17 @@
 from django import forms
+from .bulma_mixin import BulmaMixin
 
-from community.models import Question, Answer, Feedback
+from community.models import Question, Answer, Feedback, Category
 
 
-class AskQuestionForm(forms.ModelForm):
-    title = forms.CharField(widget=forms.TextInput(attrs={'class': 'input'}))
-    text = forms.CharField(
-        widget=forms.TextInput(attrs={'class': 'textarea', 'size': '20'})
-    )
+class AskQuestionForm(BulmaMixin, forms.ModelForm):
+    title = forms.CharField(label='Ask Your Question')
+    description = forms.CharField(label='ok')
+    category = forms.ChoiceField(label='Choose Category')
 
     class Meta:
         model = Question
-        fields = ['title', 'text']
+        fields = ['title', 'description', 'category']
 
 
 class AnswerForm(forms.ModelForm):

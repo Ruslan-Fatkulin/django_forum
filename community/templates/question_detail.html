@@ -1,8 +1,8 @@
-{% extends 'base_layout.html'%}
+{% extends 'base_layout.html' %}
 
 {% block content %}
-<div class="title">{{ question.title }}</div>
-<div class="title">{{ question.description }}</div>
+    <div class="title">{{ question.title }}</div>
+    <div class="title">{{ question.description }}</div>
     {% if answers %}
         {% for answer in answers %}
             <div class="subtitle">{{ answer.date }}</div>
@@ -10,5 +10,22 @@
             <div class="subtitle">{{ answer.user }}</div>
             <mark>{{ answer.code }}</mark>
         {% endfor %}
+
     {% endif %}
+    <div class="box is-fixed-bottom">
+    <form action="{% url 'community:answer' question.pk %}" method="post">
+    {% csrf_token %}
+    {% for field in form %}
+    <div class="field">
+        <label for="{{ field.id_for_label }}" class="label">
+            {{ field.label }}
+        </label>
+        {{ field }}
+    </div>
+    {% endfor %}
+    <button class="button mt-6 is-success" type="submit">
+        Отправить
+    </button>
+</form>
+    </div>
 {% endblock %}

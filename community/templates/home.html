@@ -2,35 +2,17 @@
 
 {% block content %}
     <div class="section">
-        <div class="columns is-multiline">
+        <div class="columns is-centered is-multiline">
             {% for question in questions %}
-                <div class="column is-4">
-                    <a href="{% url 'community:question_detail' question.pk %}">
-                        <div class="box">
-                            <div class="title">
-                                {{ question }}
-                            </div>
-                            <div class="subtitle">
-                                {{ question.date }}
-                            </div>
-                            <div class="subtitle">{{ question.author }}</div>
-                        </div>
-                        {% if user == question.author %}
-                            <a href="{% url 'community:delete_question' pk=question.pk %}">
-                                delete
-                            </a>
-                        {% endif %}
-                        {% if user.is_authenticated %}
-                            <a class="button" href="{% url 'community:answer' question.pk %}">Ответить</a>
-                        {% else %}
-                            <a href="{% url 'users:sign_in' %}" class="button">Войдите чтоб ответить</a>
-
-                        {% endif %}
-                            
-                    </a>
-                </div>
+                <div class="column is-10">
+                    <div class="box">
+                        <a href="{% url 'community:question_detail' question.pk %}">
+                            <div class="title">{{ question.title }}</div>
+                        </a>
+                    </div>
                 </div>
             {% endfor %}
-    </div>
+
+        </div>
     </div>
 {% endblock %}

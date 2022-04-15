@@ -1,18 +1,31 @@
 {% extends 'base_layout.html' %}
 
 {% block content %}
-    <form
-        class="site-form has-background-light"
-        method="post"
-        action="{% url 'community:ask_question' %}"
-        enctype="multipart/form-data">
-        {% csrf_token %}
-        {{ form }}
-        <div class="has-text-centered my-2">
-            <button type="submit" class="button is-success">Отправить</button>
-            <a href="{% url 'community:home' %}" class="button is-danger">
-                Отмена
-            </a>
+   <div class="columns is-centered">
+        <div class="column is-6 p-6">
+            <div class="title">Задайте свой вопрос</div>
+            <div class="subtitle">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Doloremque eos fugiat nam obcaecati perspiciatis. Ad asperiores ea iure magni nesciunt.</div>
         </div>
-    </form>
+   <div class="column is-6">
+        <div class="box" style="min-height:350px">
+              <form class="form " method="post">
+                    {% csrf_token %}
+                    {% for field in form %}
+                        <div class="field ">
+                            <label class="label" for="{{ field.id_for_label }}">
+                                {{ field.label }}
+                            </label>
+                            <div class="control">
+                                {{ field }}
+                            </div>
+                        </div>
+                    {% endfor %}
+                    <button type="submit" class="button is-info is-fullwidth">
+                        адать
+                    </button>
+
+                </form>
+        </div>
+    </div>
+   </div>
 {% endblock %}

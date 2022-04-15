@@ -2,41 +2,40 @@
 {% load static %}
 
 {% block auth %}
-    <body class="section bs">
-    <div class="columns is-centered">
+    <body class="sign">
+    <div class="columns is-centered" style="font-family:FrankRuehl ">
         <div class="column is-5">
             <div class="box back " style="border-radius:35px">
-                <div class="title is-2 has-text-centered">Регистрация</div>
+                <div class="title is-2 has-text-centered">
+                    REGISTRATION
+                </div>
                 <hr>
-                <form class="form" method="post" >
+                <form class="form" method="post">
                     {% csrf_token %}
                     {% for field in form %}
-                        <div class="field">
+                        <div class="field is-link">
                             <label class="label" for="{{ field.id_for_label }}">
                                 {{ field.label }}
                             </label>
-                            <div class="control" >
+                            <div class="control">
                                 {{ field }}
                             </div>
                         </div>
                     {% endfor %}
-                    <button type="submit" class="button is-info is-fullwidth">
-                        Продолжить
+                    <button type="submit" class="button is-outline is-light my-2 is-fullwidth">
+                        Confirm
                     </button>
-                     <div class="columns">
-                         <div class="column     ">
-                             <label class="checkbox">
-                              <input type="checkbox">
-                              Я согласен с <a href="https://tilda.cc/ru/privacy-generator/">политикой сайта</a>
-                            </label>
-                         </div>
-                         <div class="column">
-                             <a class="subtitle is-6" href="{% url 'users:sign_in' %}">Уже есть аккаунт ? <b>Войдите</b></a>
-                         </div>
-                     </div>
                 </form>
             </div>
         </div>
+    <div class="column is-4 my-4">
+        <h1 class="title is-1">
+
+Already have an account?
+        </h1>
+                                        <a href="{% url 'users:sign_in' %}" class="button is-rounded is-fullwidth is-success ">Sign In</a>
+
     </div>
-</body>
+    </div>
+    </body>
 {% endblock %}

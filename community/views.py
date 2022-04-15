@@ -1,8 +1,10 @@
 from django.shortcuts import render, redirect
 from .models import *
 from . import forms
+from django.contrib.auth.decorators import login_required
 
 
+# @login_required(login_url='/users/sign_in')
 def home(request):
     questions = Question.objects.all()
     return render(request, 'home.html', {'questions': questions})
@@ -32,7 +34,7 @@ def answer(request, pk):
             rating.save()
             return redirect('community:question_detail', pk=pk)
     form = forms.AnswerForm()
-    return render(request, 'answers.html', {'form': form, 'question': question, 'answer': answer})
+    return render(request, 'question_detail.html', {'form': form, 'question': question, 'answer': answer})
 
 
 def question_detail(request, pk):
@@ -60,3 +62,5 @@ def feedback(request):
 def admin(request):
     feedback = Feedback.objects.all()
     return render(request, 'admin.html', {'feedback': feedback})
+
+

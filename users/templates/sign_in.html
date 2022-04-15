@@ -1,11 +1,13 @@
 {% extends 'base_layout.html' %}
 
 {% block auth %}
-    <body class="section bs">
-    <div class="columns is-centered">
-        <div class="column is-5">
-            <div class="box back" style="border-radius:15px; min-height:500px;">
-                <div class="title is-2 has-text-centered">Вход</div>
+    <body class="sign">
+    <div class="columns is-centered" style="font-family:FrankRuehl ">
+        <div class="column is-4">
+            <div class="box back" style="border-radius:35px;min-height:500px;">
+                <div class="title is-2 has-text-centered">
+                    Login
+                </div>
                 <hr>
                 <form class="form " method="post">
                     {% csrf_token %}
@@ -14,29 +16,38 @@
                             <label class="label" for="{{ field.id_for_label }}">
                                 {{ field.label }}
                             </label>
-                            <div class="control"    >
+                            <div class="control">
                                 {{ field }}
                             </div>
                         </div>
                     {% endfor %}
                     <button type="submit" class="button is-info is-fullwidth">
-                        Войти
+                        Go
                     </button>
                     <div class="columns my-2">
                         <div class="column ">
                             <label class="checkbox">
                                 <input type="checkbox">
-                                Запомнить меня
+                                Remember me
                             </label>
                         </div>
-                        <div class="column ">
-                            <a href="{% url 'users:sign_up' %}">
-                                Зарегестрироваться
-                            </a>
-                        </div>
+
                     </div>
                 </form>
             </div>
+        </div>
+        <div class="column is-3">
+            <h1 class="title is-1"> Don't have an account?
+            </h1>
+            <a href="{% url 'users:sign_up' %}" class="button is-fullwidth is-rounded is-success">
+
+                Go to registration
+            </a>
+            <a href="{% url 'social:begin' 'facebook' %}" class="button is-rounded is-fullwidth is-info my-2">
+                <ion-icon name="logo-facebook" class="icon mr-2"> Log In With Facebook
+                </ion-icon>
+                Log In With Facebook
+            </a>
         </div>
     </div>
     </body>
